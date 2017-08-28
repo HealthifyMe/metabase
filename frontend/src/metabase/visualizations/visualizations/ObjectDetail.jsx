@@ -21,7 +21,10 @@ import _ from "underscore";
 
 import type { VisualizationProps } from "metabase/meta/types/Visualization";
 
-type Props = VisualizationProps;
+type Props = VisualizationProps & {
+    viewNextObjectDetail: () => void,
+    viewPreviousObjectDetail: () => void
+}
 
 const mapStateToProps = () => ({})
 
@@ -32,7 +35,7 @@ const mapDispatchToProps = {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class ObjectDetail extends Component {
-    props: Props;
+    props: Props
 
     static uiName = "Object Detail";
     static identifier = "object";
