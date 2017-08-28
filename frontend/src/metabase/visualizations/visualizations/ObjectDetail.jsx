@@ -44,6 +44,11 @@ export default class ObjectDetail extends Component {
     componentDidMount() {
         // load up FK references
         this.props.loadObjectDetailFKReferences();
+        window.addEventListener('keydown', this.onKeyDown, true)
+    }
+
+    componentWillUnMount() {
+        window.removeEventListener('keydown', this.onKeyDown)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -211,12 +216,13 @@ export default class ObjectDetail extends Component {
         );
     }
 
-    incrementDetail = () => {
-        this.props.viewNextObjectDetail()
-    }
-
-    decrementDetail = () => {
-        this.props.viewPreviousObjectDetail()
+    onKeyDown = (event) => {
+        if(event.key === 'ArrowLeft') {
+            this.props.viewPreviousObjectDetail()
+        }
+        if(event.key === 'ArrowRight') {
+            this.props.viewNextObjectDetail()
+        }
     }
 
     render() {
@@ -250,8 +256,16 @@ export default class ObjectDetail extends Component {
                     <div className="Grid-cell ObjectDetail-infoMain p4">{this.renderDetailsTable()}</div>
                     <div className="Grid-cell Cell--1of3 bg-alt">{this.renderRelationships()}</div>
                 </div>
-                <Icon name="chevronleft" onClick={this.decrementDetail} />
-                <Icon name="chevronright" onClick={this.incrementDetail} />
+                <Icon
+                    name="chevronleft"
+                    onClick={this.props.viewPreviousObjectDetail}
+                    className="fixed left cursor-pointer text-brand-hover p3"
+                />
+                <Icon
+                    name="chevronright"
+                    onClick={this.props.viewNextObjectDetail}
+                    className="fixed right cursor-pointer text-brand-hover p3"
+                />
             </div>
         );
     }
