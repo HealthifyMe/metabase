@@ -260,11 +260,13 @@ export default class ObjectDetail extends Component {
                     name="chevronleft"
                     onClick={this.props.viewPreviousObjectDetail}
                     className="fixed left cursor-pointer text-brand-hover p3"
+                    style={{ top: '50%', left: '1em', transform: 'translate(0, -50%)' }}
                 />
                 <Icon
                     name="chevronright"
                     onClick={this.props.viewNextObjectDetail}
                     className="fixed right cursor-pointer text-brand-hover p3"
+                    style={{ top: '50%', right: '1em', transform: 'translate(0, -50%)' }}
                 />
             </div>
         );
